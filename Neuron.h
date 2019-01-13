@@ -2,6 +2,5 @@
 
 class Neuron {
 private:
-    Neuron *
 public:
 };

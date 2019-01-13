@@ -14,7 +14,7 @@ private:
 
 public:
     MNISTDigit() {
-        values = new int[784];
+        values = new int[785];
     }
 
     int getLabel() {
@@ -31,7 +31,7 @@ public:
 
     void setValues(int values[]) {
         int i;
-        for (i = 1; i < 285; i++)
+        for (i = 1; i < 785; i++)
             this->values[i - 1] = values[i - 1];
     }
 };
@@ -56,12 +56,8 @@ public:
         int numbers[784];
         int lineIndex = 0;
         while (in>>line) {
-            i = 0;
-            label = 0;
-            while(line[i] != ',') {
-                label = label * 10 + (line[i] - '0');
-                i++;
-            }
+            i = 3;
+            label = line[0] - '0';
             destination[lineIndex].setLabel(label);
             j = 0;
             auxNr = 0;
@@ -75,6 +71,8 @@ public:
                 }
                 i++;
             }
+            numbers[783] = auxNr;
+
             destination[lineIndex].setValues(numbers);
             lineIndex += 1;
         }
