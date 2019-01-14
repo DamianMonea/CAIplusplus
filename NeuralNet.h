@@ -4,7 +4,7 @@
 class NeuralNetwork {
 
 private:
-    Layer * t = new Dense();
+    Layer *t = new Dense();
 public:
 
     NeuralNetwork() {
