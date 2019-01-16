@@ -4,7 +4,7 @@
 #include <Python.h>
 #include <fstream>
 #include <bits/stdc++.h> 
-#include "NeuralNet.h"
+#include "NeuralNetwork.h"
 #include "MNIST.h"
 using std::cout;
 using std::cin;
@@ -13,7 +13,6 @@ using std::string;
 
 #define TEST_SIZE 10000
 #define TRAIN_SIZE 60000
-
 
 int main() {
     ofstream content;
@@ -27,29 +26,34 @@ int main() {
     char *digitPlot = new char[30];
     strcpy(digitPlot, "python util.py DISPLAY_DIGIT");
 
+    NeuralNetwork *model = new NeuralNetwork(3);
+    model->addLayer(Dense(784));
+    model->addLayer(Dense(100));
+    model->addLayer(Dense(10));
+    model->build();
+    model->testAll();
 
-    string runCommand;
-    int index;
-    string t = "test";
-    int *values, i;
-    bool exit = false;
-    while(exit == false) {
-        cin>>runCommand;
-        if (runCommand.compare("DISPLAY_DIGIT") == 0) {
-            cout<<"Index: ";
-            cin>>index;
-            values = train[index - 1].getValues();
-            content.open("CONTENT.txt");
-            for (i = 0; i < 784; i++) {
-                content<<values[i]<<',';
-            }
-            content.close();
-            system(digitPlot);
-        }
-        if (runCommand.compare("EXIT") == 0) {
-            exit = true;
-        }
-    }    
+    // string runCommand;
+    // int index;
+    // int *values, i;
+    // bool exit = false;
+    // while(exit == false) {
+    //     cin>>runCommand;
+    //     if (runCommand.compare("DISPLAY_DIGIT") == 0) {
+    //         cout<<"Index: ";
+    //         cin>>index;
+    //         values = train[index - 1].getValues();
+    //         content.open("CONTENT.txt");
+    //         for (i = 0; i < 784; i++) {
+    //             content<<values[i]<<',';
+    //         }
+    //         content.close();
+    //         system(digitPlot);
+    //     }
+    //     if (runCommand.compare("EXIT") == 0) {
+    //         exit = true;
+    //     }
+    // }    
     
     return 0;
 }

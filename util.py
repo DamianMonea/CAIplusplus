@@ -16,7 +16,6 @@ if (command == "DISPLAY_DIGIT"):
     tmp = contentFile.read().split(',')
     data = np.array(tmp)
     letter = np.zeros((28, 28))
-    print(len(data))
     for i in range(0,28):
         for j in range(0,28):
             if (data[28 * i + j] != ''):
