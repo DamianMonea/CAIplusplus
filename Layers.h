@@ -22,6 +22,8 @@ public:
     virtual Layer* getNext() { }
 
     virtual void check() { }
+
+    virtual Neuron* getNeurons() { }
 };
 
 class Dense : public Layer{
@@ -39,6 +41,7 @@ public:
     }
 
     Dense() {
+        neurons = NULL;
         previous = NULL;
         next = NULL;
     }
@@ -48,10 +51,18 @@ public:
     }
 
     void setNext(Layer *next) {
+        int i;
+        for (i = 0; i < neuronCount; i++) {
+            this->neurons[i].setNextNeurons(next->getNeurons());
+        }
         this->next = next;
     }
 
     void setPrev(Layer *prev) {
+        int i;
+        for (i = 0; i < neuronCount; i++) {
+            this->neurons[i].setPrevNeurons(prev->getNeurons());
+        }
         this->previous = prev;
     }
 
@@ -61,6 +72,10 @@ public:
 
     Layer* getNext() {
         return this->next;
+    }
+
+    Neuron* getNeurons() {
+        return neurons;
     }
 
     void check() {

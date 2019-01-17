@@ -5,7 +5,7 @@
 #include <fstream>
 #include <bits/stdc++.h> 
 #include "NeuralNetwork.h"
-#include "MNIST.h"
+#include "Objects.h"
 using std::cout;
 using std::cin;
 using std::endl;
@@ -32,6 +32,7 @@ int main() {
     model->addLayer(Dense(10));
     model->build();
     model->testAll();
+    model->train();
 
     // string runCommand;
     // int index;
